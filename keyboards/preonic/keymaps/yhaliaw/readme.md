@@ -1,8 +1,8 @@
-# yhaliaw Planck layout
+# yhaliaw Preonic layout
 
-The layout for Planck by yhaliaw. 
+The layout for Preonic by yhaliaw. 
 
-Developed and tested on Planck Rev 6.1.
+Developed and tested on Preonic Rev 3.
 
 ## Features
 
