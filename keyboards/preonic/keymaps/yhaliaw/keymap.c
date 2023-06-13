@@ -20,6 +20,7 @@ enum preonic_layers {
     _LOWER,
     _RAISE,
     _ADJUST,
+    _GAME,
 };
 
 enum preonic_keycodes {
@@ -32,11 +33,12 @@ float planck_sound[][2] = SONG(PLANCK_SOUND);
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define GAME TG(_GAME)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Base
      * ,-----------------------------------------------------------------------------------.
-     * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
+     * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Game |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
      * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
      * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -44,20 +46,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|------+------+------+------+------+------|
      * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | Shift|
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |Leader| Ctrl | Alt  | GUI  | Lower| Enter| Space| Raise| GUI  | Alt  | Ctrl | Del  |
+     * |Leader| Ctrl | Alt  | GUI  | Lower| Space| Enter| Raise| GUI  | Alt  | Ctrl | Del  |
      * `-----------------------------------------------------------------------------------'
      */
     [_BASE] = LAYOUT_preonic_grid(
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-        KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-        QK_LEAD, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_ENT,  KC_SPC,  RAISE,   KC_RGUI, KC_RALT, KC_RCTL, KC_DEL
+        KC_GRV,     KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    GAME,
+        KC_TAB,     KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+        KC_ESC,     KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+        KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        QK_LEAD, KC_LCTL, KC_LALT, KC_LGUI,   LOWER,   KC_SPC,  KC_ENT,  RAISE, KC_RGUI, KC_RALT, KC_RCTL,  KC_DEL
     ),
 
     /* Lower
      * ,-----------------------------------------------------------------------------------.
-     * |      |      |      |      |      |      |      |      |      |      |      |      |
+     * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
      * |------+------+------+------+------+-------------+------+------+------+------+------|
      * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |      |
      * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -86,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|------+------+------+------+------+------|
      * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   _  |   +  |   {  |   }  |      |
      * |------+------+------+------+------+------+------+------+------+------+------+------|
-     * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
+     * |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
      * `-----------------------------------------------------------------------------------'
      */
     [_RAISE] = LAYOUT_preonic_grid(
@@ -116,6 +118,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, XXXXXXX, XXXXXXX, AU_ON,   AU_OFF,  AG_SWAP, AG_NORM, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
         _______, XXXXXXX, XXXXXXX, MU_ON,   MU_OFF,  NK_ON,   NK_OFF,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
+    /* Game
+     * ,-----------------------------------------------------------------------------------.
+     * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Game |
+     * |------+------+------+------+------+------+------+------+------+------+------+------|
+     * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+     * |------+------+------+------+------+-------------+------+------+------+------+------|
+     * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+     * |------+------+------+------+------+------|------+------+------+------+------+------|
+     * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | Shift|
+     * |------+------+------+------+------+------+------+------+------+------+------+------|
+     * |      | Ctrl | Alt  | GUI  |      | Space| Enter|      | GUI  | Alt  | Ctrl | Del  |
+     * `-----------------------------------------------------------------------------------'
+     */
+    [_GAME] = LAYOUT_preonic_grid(
+        KC_GRV,     KC_1,    KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    GAME,
+        KC_TAB,     KC_Q,    KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+        KC_ESC,     KC_A,    KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+        KC_LSFT,    KC_Z,    KC_X,     KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+        XXXXXXX,  KC_LCTL, KC_LALT, XXXXXXX, XXXXXXX,  KC_SPC,  KC_ENT, XXXXXXX, XXXXXXX, KC_RALT, KC_RCTL,  KC_DEL
     )
 };
 
